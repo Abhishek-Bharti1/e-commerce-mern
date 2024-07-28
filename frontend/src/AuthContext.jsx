@@ -1,5 +1,4 @@
 import  { createContext, useState, useContext } from 'react';
-import { toast } from 'react-toastify';
 
 // Create a context
 const AuthContext = createContext();

@@ -21,7 +21,7 @@ app.use(cors({
 
 
 app.use('/api/auth', authRoute);
-app.use('/api/', productRoute);
+app.use('/api', productRoute);
 
 app.get("/",(req,res)=>{
     res.send("<h1>HEllo i am live .</h1>")

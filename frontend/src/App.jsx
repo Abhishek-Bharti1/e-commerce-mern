@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer} from 'react-toastify';
 import { Suspense, lazy } from "react";
+import Loader from "./components/Loader";
 const Footer = lazy(() => import('./components/Footer'));
 const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
 const Login = lazy(() => import('./components/Login'));
@@ -13,7 +14,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-    <Suspense fallback={<h1 className="text-center">Loading...</h1>}>
+    <Suspense fallback={<Loader/>}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

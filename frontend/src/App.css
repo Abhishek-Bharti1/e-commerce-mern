@@ -11,5 +11,19 @@
     background-image: url("./assets/banner.webp");
     background-size: cover;
   }
+
+  .loader {
+    border-top-color: gray;
+    animation: spin 1.5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
   
   
