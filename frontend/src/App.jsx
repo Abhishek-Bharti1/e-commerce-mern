@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/cart" element={<CheckoutPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<OrderPlaced />} />
+       
       </Routes>
       <Footer />
     </Suspense>

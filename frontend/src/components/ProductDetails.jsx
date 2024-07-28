@@ -22,7 +22,7 @@ const getProductById = async(id)=>{
 }
 useEffect(()=>{
   getProductById(id);
-},[]);
+},[id]);
 
 
 const addToCart = ()=>{
