@@ -12,7 +12,7 @@ connectDB();
 
 
 app.use(cors({
-    origin: 'http://localhost:5173', // Replace with your frontend domain
+    origin: 'https://e-commerce-mern-frontend-tau.vercel.app', // Replace with your frontend domain
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));
