@@ -1,36 +1,60 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "./Loader";
+import { toast } from "react-toastify";
+
 const ProductDetail = () => {
-  const [product,setProduct] = useState({});
-  const [loading,setLoading] = useState(false);
-const {id} = useParams();
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(false);
+  const { id } = useParams();
 
+  const getProductById = async (id) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`https://e-commerce-mern-topaz.vercel.app/api/products/${id}`);
+      const data = await response.json();
+      setProduct(data);
+    } catch (error) {
+      toast.error('Failed to load product details');
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-const getProductById = async(id)=>{
-  setLoading(true);
-  try {
-    const product = await fetch(`https://e-commerce-mern-topaz.vercel.app/api/products/${id}`);
-    const data = await product.json();
+  useEffect(() => {
+    getProductById(id);
+  }, [id]);
 
+  const addToCart = async () => {
+    try {
+      const response = await fetch('https://e-commerce-mern-topaz.vercel.app/api/cart/add', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${JSON.parse(localStorage.getItem('token'))}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items: [{ productId: id, quantity: 1 }] }),
+      });
 
-    setProduct(data);
-    setLoading(false);
-  } catch (error) {
-    console.log(error);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Could not add to cart');
+      }
+
+      const cart = await response.json();
+      toast.success('Product added to cart');
+      console.log(cart);
+    } catch (error) {
+      toast.error(error.message);
+      console.log(error);
+    }
+  };
+
+  if (loading) {
+    return <Loader />;
   }
-}
-useEffect(()=>{
-  getProductById(id);
-},[id]);
 
-
-const addToCart = ()=>{
-  
-}
-if(loading){
-  return <Loader />
-}
   return (
     <div className="flex p-4 justify-center items-center">
       <div className="flex-1">
@@ -47,7 +71,6 @@ if(loading){
         <button className="bg-[black] text-white py-2 px-4 rounded hover:bg-gray-600" onClick={addToCart}>
           Add to Cart
         </button>
-     
       </div>
     </div>
   );

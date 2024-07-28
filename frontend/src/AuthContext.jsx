@@ -23,6 +23,7 @@ export const AuthProvider = ({ children }) => {
 
     const data = await response.json();
     setUser({ username });
+    localStorage.setItem('token',JSON.stringify(data.token));
     return data.message; 
   }
   

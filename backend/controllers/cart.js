@@ -4,31 +4,35 @@ const Product = require('../models/Product');
 
 // Add item to cart
 const addItemToCart = async (req, res) => {
-    const { userId, items } = req.body;
-  
-    try {
-      let cart = await Cart.findOne({ userId });
-  
-      if (!cart) {
-        cart = new Cart({ userId, items });
-      } else {
-        items.forEach((item) => {
-          const productIndex = cart.items.findIndex((p) => p.productId.equals(item.productId));
-          if (productIndex !== -1) {
-            cart.items[productIndex].quantity += item.quantity;
-          } else {
-            cart.items.push(item);
-          }
-        });
-      }
-  
-      await cart.save();
-      res.status(200).json(cart);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Something went wrong', error });
+  const { items } = req.body;
+  const userId = req.user.id;
+
+  try {
+    let cart = await Cart.findOne({ userId });
+
+    if (!cart) {
+      cart = new Cart({ userId, items });
+    } else {
+      items.forEach((item) => {
+        const productIndex = cart.items.findIndex((p) => p.productId.equals(item.productId));
+        if (productIndex !== -1) {
+          cart.items[productIndex].quantity += item.quantity;
+        } else {
+          cart.items.push(item);
+        }
+      });
     }
-  };
+
+    await cart.save();
+    res.status(200).json(cart);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Something went wrong', error });
+  }
+};
+
+module.exports = { addItemToCart };
+
 
 // Remove item from cart
 const removeItemFromCart = async (req, res) => {
