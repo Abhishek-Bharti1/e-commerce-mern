@@ -53,8 +53,12 @@ npm start
 4. Start the frontend server
 npm run dev
 
-![image](https://github.com/user-attachments/assets/1ea11194-4d5a-43d5-9578-4a4d8e0ea029)
-![image](https://github.com/user-attachments/assets/9f6c4f2d-208a-4ab7-bba3-ed19768d8aa7)
+### Project images
+![image](https://github.com/user-attachments/assets/a14e56d9-367a-4504-9cdf-d362a21385e6)
+![image](https://github.com/user-attachments/assets/35d10799-6b0a-4881-874f-9072d3851631)
+
+
+
 
 
 
