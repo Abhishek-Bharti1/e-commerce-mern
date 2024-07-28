@@ -2,6 +2,10 @@
 
 An E-Commerce application built with React, Express, MongoDB, and Tailwind CSS. This project includes features like product browsing, searching, user authentication, and cart management.
 
+### Project images
+![image](https://github.com/user-attachments/assets/a14e56d9-367a-4504-9cdf-d362a21385e6)
+![image](https://github.com/user-attachments/assets/35d10799-6b0a-4881-874f-9072d3851631)
+
 ## Features
 
 - User Authentication (Login, Logout)
@@ -52,11 +56,6 @@ npm start
 
 4. Start the frontend server
 npm run dev
-
-### Project images
-![image](https://github.com/user-attachments/assets/a14e56d9-367a-4504-9cdf-d362a21385e6)
-![image](https://github.com/user-attachments/assets/35d10799-6b0a-4881-874f-9072d3851631)
-
 
 
 
