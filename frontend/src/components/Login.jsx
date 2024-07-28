@@ -6,9 +6,8 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    login(username, password);
+  const handleLogin = async () => {
+    await login(username, password);
   };
 
   return (

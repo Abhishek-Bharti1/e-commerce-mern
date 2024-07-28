@@ -12,6 +12,9 @@ connectDB();
 
 
 app.use('/api/auth', authRoute);
+app.get("/",(req,res)=>{
+    res.send("<h1>HEllo i am live .</h1>")
+})
 
 const PORT = process.env.PORT;
 app.listen(PORT,()=>{
