@@ -4,6 +4,7 @@ const cors = require("cors");
 
 const connectDB = require("./config/db");
 const authRoute = require('./routes/user');
+const productRoute = require('./routes/product');
 const app = express();
 app.use(express.json());
 
@@ -12,7 +13,7 @@ connectDB();
 
 
 app.use(cors({
-    origin: '*', // Replace with your frontend domain
+    origin: '*', 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));
@@ -20,6 +21,8 @@ app.use(cors({
 
 
 app.use('/api/auth', authRoute);
+app.use('/api/', productRoute);
+
 app.get("/",(req,res)=>{
     res.send("<h1>HEllo i am live .</h1>")
 })

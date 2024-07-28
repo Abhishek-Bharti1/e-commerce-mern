@@ -1,19 +1,23 @@
 import  { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login} = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(username, password);
-      toast.success('Login successful!');
+      const message = await login(username, password);
+      toast.success(message || 'Login successful!');
+      navigate('/'); 
     } catch (error) {
-      toast.error('Login failed. Please check your credentials.');
+      toast.error(error.message || 'Login failed. Please check your credentials.');
     }
   };
 

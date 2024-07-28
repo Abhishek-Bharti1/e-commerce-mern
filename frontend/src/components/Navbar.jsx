@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 const Navbar = () => {
   const { user, logout } = useAuth();
-  
+  console.log(user,"user");
   return (
     <div className="flex justify-between items-center p-4 custom-shadow h-[100px]">
     <Link to="/">
@@ -29,12 +29,12 @@ const Navbar = () => {
         </ul>
   
        {
-        !user ? <Link to='/login'>
+        !user? <Link to='/login'>
         <button className="px-4 py-2 bg-gray-500 text-white rounded">
          Log In
         </button></Link> :
         <button className="px-4 py-2 bg-gray-500 text-white rounded" onClick={logout}>
-         Log In
+         Logout
         </button>
        }
       </div>

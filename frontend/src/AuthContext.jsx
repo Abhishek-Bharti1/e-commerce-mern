@@ -1,4 +1,5 @@
 import  { createContext, useState, useContext } from 'react';
+import { toast } from 'react-toastify';
 
 // Create a context
 const AuthContext = createContext();
@@ -8,27 +9,23 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = async (username, password) => {
-    try {
-      const response = await fetch('https://e-commerce-mern-topaz.vercel.app/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-  
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Failed to login');
-      }
-  
-      const data = await response.json();
-      setUser({ username, token: data.token });
-      console.log('User logged in:', username);
-    } catch (error) {
-      console.error('Login error:', error.message);
+    const response = await fetch('https://e-commerce-mern-topaz.vercel.app/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Login failed');
     }
-  };
+
+    const data = await response.json();
+    setUser({ username });
+    return data.message; 
+  }
   
 
   const logout = () => {
