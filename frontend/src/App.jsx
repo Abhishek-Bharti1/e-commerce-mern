@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import { ToastContainer} from 'react-toastify';
 import { Suspense, lazy } from "react";
 const Footer = lazy(() => import('./components/Footer'));
 const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
@@ -23,6 +24,7 @@ const App = () => {
       </Routes>
       <Footer />
     </Suspense>
+    <ToastContainer />
   </BrowserRouter>
   );
 };

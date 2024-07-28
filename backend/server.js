@@ -9,8 +9,10 @@ app.use(express.json());
 
 dotenv.config();
 connectDB();
+
+
 app.use(cors({
-    origin: 'https://e-commerce-mern-topaz.vercel.app', // Replace with your frontend domain
+    origin: 'http://localhost:5173', // Replace with your frontend domain
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   }));
