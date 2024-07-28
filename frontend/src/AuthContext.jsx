@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await fetch('https://e-commerce-mern-indol.vercel.app/api/auth/login', {
+      const response = await fetch('https://e-commerce-mern-topaz.vercel.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

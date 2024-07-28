@@ -6,10 +6,17 @@ const connectDB = require("./config/db");
 const authRoute = require('./routes/user');
 const app = express();
 app.use(express.json());
-app.use(cors());
+
 dotenv.config();
 connectDB();
-
+app.use(cors({
+    origin: 'https://e-commerce-mern-topaz.vercel.app', // Replace with your frontend domain
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }));
+  
+  // Handle OPTIONS requests
+  app.options('*', cors());
 
 app.use('/api/auth', authRoute);
 app.get("/",(req,res)=>{
