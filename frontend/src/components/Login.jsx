@@ -1,13 +1,20 @@
 import  { useState } from 'react';
 import { useAuth } from '../AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async () => {
-    await login(username, password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await login(username, password);
+      toast.success('Login successful!');
+    } catch (error) {
+      toast.error('Login failed. Please check your credentials.');
+    }
   };
 
   return (

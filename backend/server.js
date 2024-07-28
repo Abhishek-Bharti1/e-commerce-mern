@@ -11,14 +11,9 @@ dotenv.config();
 connectDB();
 
 
-app.use(cors({
-    origin: 'https://e-commerce-mern-frontend-tau.vercel.app', // Replace with your frontend domain
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  }));
+app.use(cors());
   
-  // Handle OPTIONS requests
-  app.options('*', cors());
+
 
 app.use('/api/auth', authRoute);
 app.get("/",(req,res)=>{
