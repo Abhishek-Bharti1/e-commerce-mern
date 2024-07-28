@@ -1,8 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer} from 'react-toastify';
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import Loader from "./components/Loader";
+import { useAuth } from "./AuthContext";
 const Footer = lazy(() => import('./components/Footer'));
 const CheckoutPage = lazy(() => import('./components/CheckoutPage'));
 const Login = lazy(() => import('./components/Login'));
@@ -11,7 +12,10 @@ const Navbar = lazy(() => import('./components/Navbar'));
 const Home = lazy(() => import('./pages/Home'));
 const ProductDetails = lazy(() => import('./components/ProductDetails'));
 const App = () => {
-
+  const {getCartItems} = useAuth();
+useEffect(()=>{
+getCartItems();
+},[]);
   return (
     <BrowserRouter>
     <Suspense fallback={<Loader/>}>

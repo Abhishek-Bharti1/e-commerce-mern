@@ -15,7 +15,7 @@ const debounce = (func, delay) => {
   };
 };
 const Navbar = () => {
-  const { user, logout } = useAuth();
+  const { user, logout,cart } = useAuth();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Navbar = () => {
           <li className="px-4">Home</li>
           <li className="px-4">About</li>
           <li className="px-4 flex items-center gap-1">Wishlist <FaHeart/></li>
-         <Link to="/cart"> <li className="px-4">Cart <span>0</span></li></Link>
+         <Link to="/cart"> <li className="px-4">Cart <span>{cart?.items?.length}</span></li></Link>
         </ul>
   
        {

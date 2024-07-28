@@ -68,7 +68,7 @@ const ProductDetail = () => {
         <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
         <p className="text-lg mb-4">{product.description}</p>
         <p className="text-xl font-semibold mb-4">${product.price}</p>
-        <button className="bg-[black] text-white py-2 px-4 rounded hover:bg-gray-600" onClick={addToCart}>
+        <button className="bg-[black] text-white py-2 px-4 rounded hover:bg-gray-600" onClick={addToCart} >
           Add to Cart
         </button>
       </div>

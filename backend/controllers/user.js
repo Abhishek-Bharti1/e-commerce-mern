@@ -27,7 +27,7 @@ const loginUser = async (req, res) => {
   
       // If the credentials are valid, log the user in
       const token = generateToken(user);
-      res.json({ token, message: 'Logged in successfully' });
+      res.json({ token, message: 'Logged in successfully',user });
     } catch (error) {
       res.status(500).json({ message: 'Server error', error });
     }
