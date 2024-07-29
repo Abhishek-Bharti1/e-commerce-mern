@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 // Create a context
@@ -15,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
+  const navigate = useNavigate();
 
   const login = async (username, password) => {
     const response = await fetch(
@@ -47,6 +49,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setCart([]);
     toast.success("User logged out");
+    navigate('/');
   };
   const getCartItems = async () => {
     try {

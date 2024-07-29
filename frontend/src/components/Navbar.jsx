@@ -44,6 +44,18 @@ const Navbar = () => {
     }
   }, [query]);
  
+
+  const handleCartClick = () => {
+    if(!user){
+      toast.error("Please login to access cart!");
+      return;
+    }
+    if (cart?.length === 0) {
+      toast.error("Cart is empty !");
+    } else {
+      navigate("/cart");
+    }
+  };
   return (
     <>
     <div className="flex justify-between items-center p-4 custom-shadow h-[100px]">
@@ -70,7 +82,7 @@ const Navbar = () => {
           <Link to='/'><li className="px-4">Home</li></Link>
           <li className="px-4">About</li>
           <li className="px-4 flex items-center gap-1">Wishlist <FaHeart/></li>
-         <Link to="/cart"> <li className="px-4">Cart <span>{cart?.items?.length}</span></li></Link>
+       <li className="px-4" onClick={handleCartClick}>Cart <span>{cart?.items?.length}</span></li>
         </ul>
   
        {

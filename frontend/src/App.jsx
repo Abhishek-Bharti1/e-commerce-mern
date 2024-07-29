@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {  Routes, Route } from "react-router-dom";
 import "./App.css";
 import { ToastContainer} from 'react-toastify';
 import { Suspense, lazy } from "react";
@@ -13,7 +13,8 @@ const ProductDetails = lazy(() => import('./components/ProductDetails'));
 const App = () => {
 
   return (
-    <BrowserRouter>
+   <>
+
     <Suspense fallback={<Loader/>}>
       <Navbar />
       <Routes>
@@ -27,7 +28,8 @@ const App = () => {
       <Footer />
     </Suspense>
     <ToastContainer />
-  </BrowserRouter>
+   </>
+
   );
 };
 

@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+
 
 const CheckoutPage = () => {
-  const [cart,setCart] = useState(JSON.parse(localStorage.getItem('cart')));
+  const {cart} = useAuth();
   // Initial cart state
   // const [cart, setCart] = useState([
   //   { ...sampleProduct, quantity: 1 }
@@ -31,7 +32,7 @@ const CheckoutPage = () => {
   const calculateTotal = () => {
     // return cart?.items.reduce((total, item) => total + item.productId.price * item.quantity, 0);
   };
-console.log(cart,"cart");
+
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Checkout</h1>
