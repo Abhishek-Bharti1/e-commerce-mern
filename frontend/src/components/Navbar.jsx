@@ -2,6 +2,7 @@ import { FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 // Debounce function
 const debounce = (func, delay) => {
   let timeoutId;
@@ -15,9 +16,9 @@ const debounce = (func, delay) => {
   };
 };
 const Navbar = () => {
-  const { user, logout,cart } = useAuth();
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
+  const {user,cart,logout} = useAuth();
   const navigate = useNavigate();
 
   // Function to fetch search results
@@ -42,7 +43,7 @@ const Navbar = () => {
       debouncedFetchSearchResults(query);
     }
   }, [query]);
-
+ 
   return (
     <>
     <div className="flex justify-between items-center p-4 custom-shadow h-[100px]">
@@ -66,7 +67,7 @@ const Navbar = () => {
  
       <div className="flex items-center">
         <ul className="flex space-x-4 mr-4">
-          <li className="px-4">Home</li>
+          <Link to='/'><li className="px-4">Home</li></Link>
           <li className="px-4">About</li>
           <li className="px-4 flex items-center gap-1">Wishlist <FaHeart/></li>
          <Link to="/cart"> <li className="px-4">Cart <span>{cart?.items?.length}</span></li></Link>

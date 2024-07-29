@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "./Loader";
 import { toast } from "react-toastify";
+import { useAuth } from "../AuthContext";
 
 const ProductDetail = () => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(false);
+  const {getCartItems} = useAuth();
   const { id } = useParams();
 
   const getProductById = async (id) => {
@@ -44,6 +46,7 @@ const ProductDetail = () => {
 
       const cart = await response.json();
       toast.success('Product added to cart');
+      getCartItems();
       console.log(cart);
     } catch (error) {
       toast.error(error.message);
